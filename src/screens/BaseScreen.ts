@@ -6,7 +6,7 @@ export abstract class BaseScreen {
     this.container.className = 'screen';
   }
 
-  abstract render(): HTMLElement;
+  abstract render(): HTMLElement | Promise<HTMLElement>;
 
   protected createButton(
     text: string,

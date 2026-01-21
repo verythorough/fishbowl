@@ -17,9 +17,7 @@ export class PlayScreen extends BaseScreen {
       return this.container;
     }
 
-    // Header with round info and pause button
-    const header = this.createHeader(currentRound.name);
-
+    // Top bar with round info and pause button
     const topBar = document.createElement('div');
     topBar.style.display = 'flex';
     topBar.style.justifyContent = 'space-between';

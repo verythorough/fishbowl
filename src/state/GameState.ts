@@ -1,4 +1,4 @@
-import type { GameState, GameConfig, Word, Round, TurnState, TurnStats, RoundStats, RoundType } from '../types';
+import type { GameState, GameConfig, Word, Round, TurnState, TurnStats, RoundStats } from '../types';
 import { ROUND_DEFINITIONS, DEFAULT_CONFIG } from '../constants';
 import { shuffle } from '../utils/shuffle';
 import { saveGameState, loadGameState, clearGameState } from './storage';
