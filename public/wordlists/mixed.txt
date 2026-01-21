@@ -1,0 +1,79 @@
+# Mixed Triple Take Word List
+# 60 words with varied difficulty
+
+# Easy - Famous People
+Michael Jackson
+Cleopatra
+Gandhi
+Einstein
+Frida Kahlo
+
+# Easy - Places
+Paris
+Australia
+Hawaii
+Antarctica
+Grand Canyon
+
+# Easy - Things
+Bicycle
+Rainbow
+Coffee
+Guitar
+Sunglasses
+
+# Medium - Characters
+Sherlock Holmes
+Wonder Woman
+Pikachu
+Mario
+Yoda
+
+# Medium - Concepts
+Democracy
+Photosynthesis
+Gravity
+Evolution
+Meditation
+
+# Medium - Events
+Woodstock
+The Moon Landing
+The Renaissance
+Industrial Revolution
+Thanksgiving
+
+# Hard - Historical Figures
+Rosa Parks
+Nelson Mandela
+Marie Curie
+Galileo
+Joan of Arc
+
+# Hard - Art & Literature
+The Great Gatsby
+Starry Night
+Hamlet
+Guernica
+1984
+
+# Hard - Science
+DNA
+Black Hole
+Quantum Physics
+Climate Change
+Periodic Table
+
+# Challenging - Abstract
+Deja Vu
+Nostalgia
+Serendipity
+Paradox
+Zeitgeist
+
+# Fun - Pop Culture Mix
+Coachella
+Comic-Con
+Broadway
+Wimbledon
+Eurovision
