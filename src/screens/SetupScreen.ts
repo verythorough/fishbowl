@@ -50,30 +50,65 @@ export class SetupScreen extends BaseScreen {
     description.className = 'mb-md';
     section.appendChild(description);
 
-    const durations = [30, 45, 60, 90, 120];
-    const durationButtons = document.createElement('div');
-    durationButtons.className = 'button-group';
+    // Container for the duration control
+    const durationControl = document.createElement('div');
+    durationControl.className = 'duration-control';
+    durationControl.style.display = 'flex';
+    durationControl.style.alignItems = 'center';
+    durationControl.style.justifyContent = 'center';
+    durationControl.style.gap = 'var(--spacing-sm)';
 
-    durations.forEach(duration => {
-      const button = document.createElement('button');
-      button.textContent = `${duration}s`;
-      button.className = duration === this.selectedDuration
-        ? 'btn btn-primary'
-        : 'btn btn-secondary';
+    // Decrement button
+    const decrementBtn = document.createElement('button');
+    decrementBtn.textContent = '−';
+    decrementBtn.className = 'btn btn-secondary';
+    decrementBtn.style.width = '50px';
+    decrementBtn.style.height = '50px';
+    decrementBtn.style.fontSize = 'var(--font-size-xl)';
+    decrementBtn.style.padding = '0';
 
-      button.addEventListener('click', () => {
-        this.selectedDuration = duration;
-        // Update button styles
-        durationButtons.querySelectorAll('button').forEach(btn => {
-          btn.className = 'btn btn-secondary';
-        });
-        button.className = 'btn btn-primary';
-      });
+    // Duration display
+    const durationDisplay = document.createElement('div');
+    durationDisplay.className = 'duration-display';
+    durationDisplay.textContent = `${this.selectedDuration}s`;
+    durationDisplay.style.fontSize = 'var(--font-size-2xl)';
+    durationDisplay.style.fontWeight = '600';
+    durationDisplay.style.minWidth = '100px';
+    durationDisplay.style.textAlign = 'center';
+    durationDisplay.style.padding = 'var(--spacing-sm)';
+    durationDisplay.style.border = '2px solid var(--color-border)';
+    durationDisplay.style.borderRadius = 'var(--border-radius)';
+    durationDisplay.style.backgroundColor = 'var(--color-surface)';
 
-      durationButtons.appendChild(button);
+    // Increment button
+    const incrementBtn = document.createElement('button');
+    incrementBtn.textContent = '+';
+    incrementBtn.className = 'btn btn-secondary';
+    incrementBtn.style.width = '50px';
+    incrementBtn.style.height = '50px';
+    incrementBtn.style.fontSize = 'var(--font-size-xl)';
+    incrementBtn.style.padding = '0';
+
+    // Event handlers
+    const updateDuration = (newDuration: number) => {
+      // Clamp between 15 and 300 seconds (5 minutes)
+      this.selectedDuration = Math.max(15, Math.min(300, newDuration));
+      durationDisplay.textContent = `${this.selectedDuration}s`;
+    };
+
+    decrementBtn.addEventListener('click', () => {
+      updateDuration(this.selectedDuration - 15);
     });
 
-    section.appendChild(durationButtons);
+    incrementBtn.addEventListener('click', () => {
+      updateDuration(this.selectedDuration + 15);
+    });
+
+    durationControl.appendChild(decrementBtn);
+    durationControl.appendChild(durationDisplay);
+    durationControl.appendChild(incrementBtn);
+
+    section.appendChild(durationControl);
     return section;
   }
 
