@@ -1,5 +1,5 @@
 # Pop Culture Triple Take Word List
-# 50 modern pop culture references
+# 150 modern pop culture references
 
 Netflix
 TikTok
@@ -50,4 +50,104 @@ Top Gun Maverick
 House of the Dragon
 Florence Pugh
 Euphoria
-Peacock (app)
+Among Us
+Addison Rae
+Twitch
+Spotify
+Instagram
+Snapchat
+YouTube
+WhatsApp
+Discord
+Reddit
+Twitter (X)
+Facebook
+Amazon Prime
+Disney+
+Hulu
+HBO Max
+Apple TV+
+The Last of Us
+Rick and Morty
+Bridgerton
+The Witcher
+Yellowstone
+Ozark
+The Handmaid's Tale
+Peaky Blinders
+Money Heist
+Narcos
+The Boys
+Westworld
+Black Mirror
+Cobra Kai
+You
+The Umbrella Academy
+Loki
+WandaVision
+The Falcon and the Winter Soldier
+Hawkeye
+Moon Knight
+She-Hulk
+Ms. Marvel
+Andor
+The Book of Boba Fett
+Obi-Wan Kenobi
+Ahsoka
+The Batman
+Doctor Strange
+Thor
+Guardians of the Galaxy
+Ant-Man
+Captain Marvel
+The Flash
+Aquaman
+Wonder Woman
+Shazam
+Suicide Squad
+Joker
+Harley Quinn
+Deadpool
+Wolverine
+X-Men
+Venom
+Morbius
+Sonic the Hedgehog
+Mario
+Luigi
+Princess Peach
+Bowser
+Donkey Kong
+Zelda
+Link
+Kirby
+Pikachu
+Charizard
+Mewtwo
+Ash Ketchum
+Snorlax
+Eevee
+Squirtle
+Bulbasaur
+Jigglypuff
+Gengar
+Lucario
+Gardevoir
+Gyarados
+Dragonite
+Snoopy
+Garfield
+Hello Kitty
+Totoro
+Sailor Moon
+Goku
+Naruto
+Luffy
+Eren Yeager
+Attack on Titan
+Death Note
+Dragon Ball
+One Piece
+Demon Slayer
+Jujutsu Kaisen
+My Hero Academia

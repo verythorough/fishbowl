@@ -1,5 +1,5 @@
 # Classic Triple Take Word List
-# 50 well-known people, places, and things
+# 150 well-known people, places, and things
 
 Abraham Lincoln
 Beyoncé
@@ -51,3 +51,104 @@ The Internet
 Martin Luther King Jr.
 Barbie
 NASA
+The Grand Canyon
+Charlie Chaplin
+Robin Hood
+The Titanic
+Cleopatra
+Mount Rushmore
+Steve Jobs
+The Golden Gate Bridge
+Frankenstein
+Gandhi
+Sherlock Holmes
+The Taj Mahal
+Nelson Mandela
+Dracula
+The Seven Wonders
+Amelia Earhart
+The Louvre
+Benjamin Franklin
+Stonehenge
+Rosa Parks
+The Amazon Rainforest
+Winston Churchill
+King Kong
+The Colosseum
+Helen Keller
+Big Foot
+Niagara Falls
+Mark Twain
+Loch Ness Monster
+The Berlin Wall
+Thomas Edison
+Vampires
+Times Square
+Vincent van Gogh
+Zombies
+The Sahara Desert
+Marie Curie
+Aliens
+Las Vegas
+Charles Darwin
+Werewolves
+The Panama Canal
+Isaac Newton
+Ghosts
+Buckingham Palace
+Sigmund Freud
+Unicorns
+Mount Fuji
+Florence Nightingale
+Dragons
+The Sydney Opera House
+Alexander the Great
+Mermaids
+Yellowstone
+Joan of Arc
+Witches
+The Alamo
+Aristotle
+Ninjas
+The Forbidden City
+Confucius
+Pirates
+The Amazon River
+Mother Teresa
+Knights
+The Dead Sea
+Julius Caesar
+Samurai
+Angel Falls
+Socrates
+Vikings
+The Nile River
+Marco Polo
+Genies
+Antarctica
+Christopher Columbus
+Elves
+The Mississippi River
+Captain Cook
+Trolls
+The Congo River
+Lewis and Clark
+Fairies
+Mount Kilimanjaro
+Harriet Tubman
+Leprechauns
+The Rocky Mountains
+Frederick Douglass
+Cyclops
+The Andes Mountains
+Jane Austen
+Minotaur
+The Himalayas
+Emily Dickinson
+Centaur
+The Alps
+Edgar Allan Poe
+Phoenix
+Mount Vesuvius
+Frida Kahlo
+Pegasus

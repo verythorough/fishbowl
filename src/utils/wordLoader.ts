@@ -1,4 +1,5 @@
 import type { Word } from '../types';
+import { shuffle } from './shuffle';
 
 /**
  * Load a built-in word list from public/wordlists/
@@ -57,4 +58,15 @@ export function parseTextFile(file: File): Promise<Word[]> {
  */
 export function parseTextInput(text: string): Word[] {
   return parseWordList(text, 'custom-input');
+}
+
+/**
+ * Randomly select a subset of words from a larger list
+ */
+export function selectRandomSubset(words: Word[], count: number): Word[] {
+  if (words.length <= count) {
+    return words;
+  }
+  const shuffled = shuffle([...words]);
+  return shuffled.slice(0, count);
 }

@@ -1,6 +1,6 @@
 import { BaseScreen } from './BaseScreen';
 import { getScreenManager } from './ScreenManager';
-import { loadBuiltInList, parseTextInput, parseTextFile } from '../utils/wordLoader';
+import { loadBuiltInList, parseTextInput, parseTextFile, selectRandomSubset } from '../utils/wordLoader';
 import type { Word } from '../types';
 
 type Tab = 'builtin' | 'paste' | 'upload';
@@ -9,8 +9,18 @@ export class WordInputScreen extends BaseScreen {
   private currentTab: Tab = 'builtin';
   private selectedWords: Word[] = [];
   private selectedLists: Set<string> = new Set(['classic.txt']);
+  private playerCount: number = 6;
+  private targetWordCount: number = 30;
 
   async render(): Promise<HTMLElement> {
+    // Load player count from config
+    const configJson = sessionStorage.getItem('game-config');
+    if (configJson) {
+      const config = JSON.parse(configJson);
+      this.playerCount = config.playerCount || 6;
+      this.targetWordCount = this.playerCount * 5;
+    }
+
     const header = this.createHeader('Add Words');
 
     // Tab navigation
@@ -125,13 +135,16 @@ export class WordInputScreen extends BaseScreen {
   }
 
   private async renderBuiltInTab(container: HTMLElement): Promise<void> {
-    const description = this.createParagraph('Select one or more built-in word lists');
+    const description = this.createParagraph(
+      `Select one or more built-in word lists. We'll randomly choose ${this.targetWordCount} words from your selection.`
+    );
     container.appendChild(description);
 
     const lists = [
-      { filename: 'classic.txt', name: 'Classic', description: '50 well-known people, places & things', count: 50 },
-      { filename: 'pop-culture.txt', name: 'Pop Culture', description: '50 modern references', count: 50 },
-      { filename: 'mixed.txt', name: 'Mixed', description: '60 varied difficulty words', count: 60 },
+      { filename: 'classic.txt', name: 'Classic', description: 'Well-known people, places & things', count: 150 },
+      { filename: 'pop-culture.txt', name: 'Pop Culture', description: 'Modern references', count: 150 },
+      { filename: 'mixed.txt', name: 'Mixed', description: 'Varied difficulty words', count: 150 },
+      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 0 },
     ];
 
     for (const list of lists) {
@@ -193,11 +206,16 @@ export class WordInputScreen extends BaseScreen {
   }
 
   private async loadSelectedLists(): Promise<void> {
-    this.selectedWords = [];
+    // Load all words from selected lists
+    const allWords: Word[] = [];
     for (const filename of this.selectedLists) {
       const words = await loadBuiltInList(filename);
-      this.selectedWords.push(...words);
+      allWords.push(...words);
     }
+
+    // Select a larger subset (150% of target) so users have extras to swap in
+    const poolSize = Math.ceil(this.targetWordCount * 1.5);
+    this.selectedWords = selectRandomSubset(allWords, poolSize);
   }
 
   private renderPasteTab(container: HTMLElement): void {
@@ -256,9 +274,15 @@ export class WordInputScreen extends BaseScreen {
 
   private updateWordCount(element: HTMLElement): void {
     const count = this.selectedWords.length;
-    element.textContent = count === 1
-      ? '1 word selected'
-      : `${count} words selected`;
+    const target = this.targetWordCount;
+
+    if (this.currentTab === 'builtin') {
+      element.textContent = `${count} words selected (target: ${target})`;
+    } else {
+      element.textContent = count === 1
+        ? '1 word selected'
+        : `${count} words selected`;
+    }
   }
 
   private handleContinue(): void {
@@ -267,7 +291,19 @@ export class WordInputScreen extends BaseScreen {
       return;
     }
 
-    sessionStorage.setItem('game-words', JSON.stringify(this.selectedWords));
+    if (this.currentTab === 'builtin') {
+      // For built-in lists, pass the full pool and mark which are initially selected
+      const initiallySelected = selectRandomSubset(this.selectedWords, this.targetWordCount);
+      const selectedIds = new Set(initiallySelected.map(w => w.id));
+
+      sessionStorage.setItem('game-words-pool', JSON.stringify(this.selectedWords));
+      sessionStorage.setItem('game-words-selected', JSON.stringify(Array.from(selectedIds)));
+      sessionStorage.setItem('game-words-target', this.targetWordCount.toString());
+    } else {
+      // For paste/upload, just pass the words directly (all selected)
+      sessionStorage.setItem('game-words', JSON.stringify(this.selectedWords));
+    }
+
     getScreenManager().navigate('review');
   }
 }

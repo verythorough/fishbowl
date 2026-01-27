@@ -1,5 +1,5 @@
 # Mixed Triple Take Word List
-# 60 words with varied difficulty
+# 150 words with varied difficulty
 
 # Easy - Famous People
 Michael Jackson
@@ -77,3 +77,128 @@ Comic-Con
 Broadway
 Wimbledon
 Eurovision
+
+# More Easy - People
+Bob Ross
+Steve Irwin
+Mr. Rogers
+Julia Child
+David Bowie
+
+# More Easy - Places
+Tokyo
+London
+Egypt
+Brazil
+Venice
+
+# More Easy - Things
+Skateboard
+Camera
+Telescope
+Compass
+Umbrella
+
+# More Medium - Characters
+Darth Vader
+Hermione Granger
+Bugs Bunny
+SpongeBob
+Elsa
+
+# More Medium - Concepts
+Karma
+Irony
+Metamorphosis
+Symbiosis
+Hibernation
+
+# More Medium - Events
+Burning Man
+Mardi Gras
+Oktoberfest
+Boston Tea Party
+Prohibition
+
+# More Hard - Historical Figures
+Socrates
+Genghis Khan
+Leonardo da Vinci
+Harriet Tubman
+Malcolm X
+
+# More Hard - Art & Literature
+Mona Lisa
+To Kill a Mockingbird
+The Scream
+Don Quixote
+The Thinker
+
+# More Hard - Science
+Mitochondria
+Photon
+Ecosystem
+Tectonic Plates
+Supernova
+
+# More Challenging - Abstract
+Schadenfreude
+Catharsis
+Hubris
+Epiphany
+Ambiguity
+
+# More Fun Mix
+Burning Man
+Glastonbury
+Sundance
+Cannes
+Grammy Awards
+Tony Awards
+Emmy Awards
+Oscar
+Golden Globe
+Super Bowl
+World Cup
+Tour de France
+Kentucky Derby
+Masters
+World Series
+Stanley Cup
+NBA Finals
+March Madness
+Coachella
+Lollapalooza
+SXSW
+Burning Man
+Renaissance Fair
+Pride Parade
+Macy's Parade
+Times Square Ball Drop
+Carnival
+Running of the Bulls
+La Tomatina
+Holi Festival
+Day of the Dead
+
+# Tech & Modern Life
+Smartphone
+Selfie
+Email
+Wi-Fi
+GPS
+Bluetooth
+Cloud Storage
+Algorithm
+Cryptocurrency
+Artificial Intelligence
+Virtual Reality
+Augmented Reality
+3D Printing
+Drone
+Electric Car
+Solar Panel
+Wind Turbine
+Recycling
+Composting
+Carbon Footprint

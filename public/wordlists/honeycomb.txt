@@ -1,0 +1,29 @@
+# Honeycomb Triple Take Word List
+# 150+ Honeycomb-specific terms, concepts, and inside jokes
+#
+# Instructions: Populate this list with:
+# - Product names and features
+# - Team members and personas
+# - Inside jokes and Slack memes
+# - Company values and concepts
+# - Tools and technologies used
+# - Customer stories and use cases
+# - Company events and milestones
+
+# Product Features
+# (Add terms like: Bubbleup, Triggers, SLOs, Query Builder, etc.)
+
+# Team & Culture
+# (Add terms like team names, common phrases, traditions)
+
+# Tech Stack
+# (Add technologies and tools commonly used)
+
+# Customer Stories
+# (Add memorable customer names or use cases)
+
+# Company Events
+# (Add onsite names, hackathon themes, etc.)
+
+# Inside Jokes
+# (Add Slack emoji names, running gags, etc.)
