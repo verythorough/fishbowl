@@ -136,7 +136,7 @@ export class WordInputScreen extends BaseScreen {
       { filename: 'classic.txt', name: 'Classic', description: 'Well-known people, places & things', count: 150 },
       { filename: 'pop-culture.txt', name: 'Pop Culture', description: 'Modern references', count: 150 },
       { filename: 'mixed.txt', name: 'Mixed', description: 'Varied difficulty words', count: 150 },
-      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 0 },
+      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 90 },
     ];
 
     for (const list of lists) {

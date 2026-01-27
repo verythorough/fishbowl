@@ -1,29 +1,101 @@
 # Honeycomb Triple Take Word List
-# 150+ Honeycomb-specific terms, concepts, and inside jokes
-#
-# Instructions: Populate this list with:
-# - Product names and features
-# - Team members and personas
-# - Inside jokes and Slack memes
-# - Company values and concepts
-# - Tools and technologies used
-# - Customer stories and use cases
-# - Company events and milestones
+# 90+ Honeycomb-specific terms, concepts, and inside jokes
 
 # Product Features
-# (Add terms like: Bubbleup, Triggers, SLOs, Query Builder, etc.)
+BubbleUp
+Refinery
+Canvas
+Service Map
+Trace Waterfall
+Heatmap
+Telemetry Pipeline
+Markers
+Board Templates
+Triggers
+Honeycomb Intelligence
+Query Sandbox
+Log Analytics
+Honeycomb Academy
 
-# Team & Culture
-# (Add terms like team names, common phrases, traditions)
+# People & Culture
+Charity Majors
+Christine Yen
+Jessitron
+Kane
+Bees
+Worker Bee
+Queen Bee
+Beekeeper
+Pollinator
+We hire adults
+Act with autonomy
 
-# Tech Stack
-# (Add technologies and tools commonly used)
+# Events & Traditions
+Swarm
+Dine Arounds
+Karaoke
+Office Hours
+Observability Days
 
-# Customer Stories
-# (Add memorable customer names or use cases)
+# Tech & Concepts
+o11y
+Observability
+Distributed Tracing
+OpenTelemetry
+OTLP
+OpAMP
+Tail Sampling
+High Cardinality
+Cardinality
+Instrumentation
+Span
+SLO
+Burn Rate
+Budget Burndown
+Private Cloud
 
-# Company Events
-# (Add onsite names, hackathon themes, etc.)
+# Tools & Systems
+Hound
+Dogfooding
+Kibble
+Navan
+MCP
 
-# Inside Jokes
-# (Add Slack emoji names, running gags, etc.)
+# Communication & Culture
+Bufo
+Waggle Dance
+MTTWTF
+LFG
+EIAE
+Fast and close to right
+Feedback is a muscle
+Kill your darlings
+Ship it
+LGTM
+SGTM
+Happy little turtle
+
+# Community
+Pollinators
+O11yCast
+Nectar
+Buzz
+Hive
+Stinger
+
+# Travel Chaos (Swarm Stories)
+Flight canceled
+Graveyard of boarding passes
+De-icing
+Red-eye
+Rebooking
+Weather Advisory
+Snow accumulation
+Arrive early
+Connecting flights
+DFW
+Newark
+Train to Philly
+
+# Organizational
+R&D
