@@ -9,18 +9,10 @@ export class WordInputScreen extends BaseScreen {
   private currentTab: Tab = 'builtin';
   private selectedWords: Word[] = [];
   private selectedLists: Set<string> = new Set(['classic.txt']);
-  private playerCount: number = 6;
-  private targetWordCount: number = 30;
+  private readonly targetWordCount: number = 50; // Target 40-50 cards per Monikers guidelines
+  private readonly poolSize: number = 60; // 20% extra for swapping
 
   async render(): Promise<HTMLElement> {
-    // Load player count from config
-    const configJson = sessionStorage.getItem('game-config');
-    if (configJson) {
-      const config = JSON.parse(configJson);
-      this.playerCount = config.playerCount || 6;
-      this.targetWordCount = this.playerCount * 5;
-    }
-
     const header = this.createHeader('Add Words');
 
     // Tab navigation
@@ -136,7 +128,7 @@ export class WordInputScreen extends BaseScreen {
 
   private async renderBuiltInTab(container: HTMLElement): Promise<void> {
     const description = this.createParagraph(
-      `Select one or more built-in word lists. We'll randomly choose ${this.targetWordCount} words from your selection.`
+      'Select one or more built-in word lists. We\'ll randomly choose 50 words from your selection.'
     );
     container.appendChild(description);
 
@@ -213,9 +205,8 @@ export class WordInputScreen extends BaseScreen {
       allWords.push(...words);
     }
 
-    // Select a larger subset (150% of target) so users have extras to swap in
-    const poolSize = Math.ceil(this.targetWordCount * 1.5);
-    this.selectedWords = selectRandomSubset(allWords, poolSize);
+    // Select 60 words (target 50 + 10 extras for swapping)
+    this.selectedWords = selectRandomSubset(allWords, this.poolSize);
   }
 
   private renderPasteTab(container: HTMLElement): void {
@@ -274,10 +265,9 @@ export class WordInputScreen extends BaseScreen {
 
   private updateWordCount(element: HTMLElement): void {
     const count = this.selectedWords.length;
-    const target = this.targetWordCount;
 
     if (this.currentTab === 'builtin') {
-      element.textContent = `${count} words selected (target: ${target})`;
+      element.textContent = `${count} words selected (target: 50)`;
     } else {
       element.textContent = count === 1
         ? '1 word selected'

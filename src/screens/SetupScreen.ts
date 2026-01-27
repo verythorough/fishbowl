@@ -5,13 +5,9 @@ import type { RoundType } from '../types';
 export class SetupScreen extends BaseScreen {
   private selectedDuration: number = 60;
   private selectedRounds: Set<RoundType> = new Set(['describe', 'one-word', 'charades']);
-  private playerCount: number = 6;
 
   render(): HTMLElement {
     const header = this.createHeader('Game Setup');
-
-    // Player Count Section
-    const playerSection = this.createPlayerSection();
 
     // Turn Duration Section
     const durationSection = this.createDurationSection();
@@ -35,95 +31,11 @@ export class SetupScreen extends BaseScreen {
     const buttonGroup = this.createButtonGroup([backButton, nextButton]);
 
     this.container.appendChild(header);
-    this.container.appendChild(playerSection);
     this.container.appendChild(durationSection);
     this.container.appendChild(roundsSection);
     this.container.appendChild(buttonGroup);
 
     return this.container;
-  }
-
-  private createPlayerSection(): HTMLElement {
-    const section = document.createElement('div');
-    section.className = 'mb-lg';
-
-    const label = document.createElement('h2');
-    label.textContent = 'Number of Players';
-    section.appendChild(label);
-
-    const description = this.createParagraph('How many people are playing?');
-    description.className = 'mb-sm';
-    section.appendChild(description);
-
-    const wordCountNote = document.createElement('p');
-    wordCountNote.className = 'mb-md';
-    wordCountNote.style.fontSize = 'var(--font-size-sm)';
-    wordCountNote.style.color = 'var(--color-text-secondary)';
-    wordCountNote.textContent = `You'll play with ${this.playerCount * 5} words (5 per player)`;
-
-    // Container for the player control
-    const playerControl = document.createElement('div');
-    playerControl.className = 'player-control';
-    playerControl.style.display = 'flex';
-    playerControl.style.alignItems = 'center';
-    playerControl.style.justifyContent = 'center';
-    playerControl.style.gap = 'var(--spacing-sm)';
-    playerControl.style.marginBottom = 'var(--spacing-sm)';
-
-    // Decrement button
-    const decrementBtn = document.createElement('button');
-    decrementBtn.textContent = '−';
-    decrementBtn.className = 'btn btn-secondary';
-    decrementBtn.style.width = '50px';
-    decrementBtn.style.height = '50px';
-    decrementBtn.style.fontSize = 'var(--font-size-xl)';
-    decrementBtn.style.padding = '0';
-
-    // Player count display
-    const playerDisplay = document.createElement('div');
-    playerDisplay.className = 'player-display';
-    playerDisplay.textContent = `${this.playerCount}`;
-    playerDisplay.style.fontSize = 'var(--font-size-2xl)';
-    playerDisplay.style.fontWeight = '600';
-    playerDisplay.style.minWidth = '100px';
-    playerDisplay.style.textAlign = 'center';
-    playerDisplay.style.padding = 'var(--spacing-sm)';
-    playerDisplay.style.border = '2px solid var(--color-border)';
-    playerDisplay.style.borderRadius = 'var(--border-radius)';
-    playerDisplay.style.backgroundColor = 'var(--color-surface)';
-
-    // Increment button
-    const incrementBtn = document.createElement('button');
-    incrementBtn.textContent = '+';
-    incrementBtn.className = 'btn btn-secondary';
-    incrementBtn.style.width = '50px';
-    incrementBtn.style.height = '50px';
-    incrementBtn.style.fontSize = 'var(--font-size-xl)';
-    incrementBtn.style.padding = '0';
-
-    // Event handlers
-    const updatePlayerCount = (newCount: number) => {
-      // Clamp between 2 and 20 players
-      this.playerCount = Math.max(2, Math.min(20, newCount));
-      playerDisplay.textContent = `${this.playerCount}`;
-      wordCountNote.textContent = `You'll play with ${this.playerCount * 5} words (5 per player)`;
-    };
-
-    decrementBtn.addEventListener('click', () => {
-      updatePlayerCount(this.playerCount - 1);
-    });
-
-    incrementBtn.addEventListener('click', () => {
-      updatePlayerCount(this.playerCount + 1);
-    });
-
-    playerControl.appendChild(decrementBtn);
-    playerControl.appendChild(playerDisplay);
-    playerControl.appendChild(incrementBtn);
-
-    section.appendChild(playerControl);
-    section.appendChild(wordCountNote);
-    return section;
   }
 
   private createDurationSection(): HTMLElement {
@@ -289,7 +201,6 @@ export class SetupScreen extends BaseScreen {
       turnDuration: this.selectedDuration,
       enabledRounds: Array.from(this.selectedRounds),
       allowSkipping: true,
-      playerCount: this.playerCount,
     };
 
     sessionStorage.setItem('game-config', JSON.stringify(config));
