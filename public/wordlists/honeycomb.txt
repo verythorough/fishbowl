@@ -13,14 +13,11 @@ Markers
 Board Templates
 Triggers
 Honeycomb Intelligence
-Query Sandbox
-Log Analytics
 Honeycomb Academy
 
 # People & Culture
-Charity Majors
-Christine Yen
-Jessitron
+Charity
+Christine
 Kane
 Bees
 Worker Bee
@@ -36,22 +33,21 @@ Dine Arounds
 Karaoke
 Office Hours
 Observability Days
+Sticky notes
+Open Spaces
+Demo days
+Stickers
 
 # Tech & Concepts
 o11y
 Observability
-Distributed Tracing
 OpenTelemetry
-OTLP
-OpAMP
-Tail Sampling
-High Cardinality
+Sampling
 Cardinality
 Instrumentation
 Span
 SLO
 Burn Rate
-Budget Burndown
 Private Cloud
 
 # Tools & Systems
@@ -66,26 +62,22 @@ Bufo
 Waggle Dance
 MTTWTF
 LFG
-EIAE
+Everything is an experiment
 Fast and close to right
 Feedback is a muscle
-Kill your darlings
 Ship it
 LGTM
-SGTM
-Happy little turtle
+Point positive
+Boop
+All the way down
 
 # Community
 Pollinators
-O11yCast
-Nectar
 Buzz
 Hive
-Stinger
 
 # Travel Chaos (Swarm Stories)
 Flight canceled
-Graveyard of boarding passes
 De-icing
 Red-eye
 Rebooking
@@ -94,8 +86,17 @@ Snow accumulation
 Arrive early
 Connecting flights
 DFW
-Newark
 Train to Philly
+Fern
+American Airlines
+Missing crew
+Flight status
+
 
 # Organizational
 R&D
+GTM
+Agentic
+AI
+Strategic
+Ten ants
