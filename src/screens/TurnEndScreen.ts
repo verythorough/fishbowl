@@ -79,6 +79,10 @@ export class TurnEndScreen extends BaseScreen {
       },
       'btn btn-primary'
     );
+    nextButton.style.width = '100%';
+    nextButton.style.maxWidth = '400px';
+    nextButton.style.margin = '0 auto';
+    nextButton.style.display = 'block';
 
     this.container.appendChild(header);
     this.container.appendChild(emoji);

@@ -149,19 +149,22 @@ p {
 
 /* Word card in play screen */
 .word-card {
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-xl);
   font-weight: bold;
   text-align: center;
   padding: var(--spacing-xl);
   margin: var(--spacing-lg) 0;
   background: var(--color-bg);
   border-radius: var(--border-radius);
-  min-height: 200px;
+  min-height: 150px;
+  max-height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 3px solid var(--color-border);
   word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
 }
 
 /* Timer */

@@ -44,21 +44,48 @@ export class ReviewScreen extends BaseScreen {
       return this.container;
     }
 
-    const header = this.createHeader('Review Your Words');
+    const header = this.createHeader('Ready to play?');
 
     const summary = document.createElement('div');
     summary.className = 'summary mb-md';
     this.updateSummary(summary);
 
-    // Button to toggle word list visibility
+    // Primary Start Game button (large, centered)
+    const startButton = this.createButton(
+      'Start Game!',
+      () => this.handleStart(),
+      'btn btn-success'
+    );
+    startButton.style.width = '100%';
+    startButton.style.marginBottom = 'var(--spacing-md)';
+    startButton.style.fontSize = 'var(--font-size-xl)';
+    startButton.style.padding = 'var(--spacing-md)';
+
+    // Secondary buttons row
+    const secondaryButtonsRow = document.createElement('div');
+    secondaryButtonsRow.style.display = 'flex';
+    secondaryButtonsRow.style.gap = 'var(--spacing-sm)';
+    secondaryButtonsRow.style.marginBottom = 'var(--spacing-md)';
+
+    const backButton = this.createButton(
+      'Go back',
+      () => getScreenManager().navigate('word-input'),
+      'btn btn-secondary'
+    );
+    backButton.style.flex = '1';
+    backButton.style.fontSize = 'var(--font-size-sm)';
+
     const toggleButton = this.createButton(
-      'Review/Edit List',
+      'Review word list',
       () => this.toggleWordList(),
       'btn btn-secondary'
     );
-    toggleButton.className = 'btn btn-secondary mb-md';
-    toggleButton.style.width = '100%';
+    toggleButton.style.flex = '1';
+    toggleButton.style.fontSize = 'var(--font-size-sm)';
     toggleButton.id = 'toggle-word-list';
+
+    secondaryButtonsRow.appendChild(backButton);
+    secondaryButtonsRow.appendChild(toggleButton);
 
     // Word list container (initially hidden)
     const wordListWrapper = document.createElement('div');
@@ -69,26 +96,11 @@ export class ReviewScreen extends BaseScreen {
     const wordList = this.createWordList();
     wordListWrapper.appendChild(wordList);
 
-    // Buttons
-    const startButton = this.createButton(
-      'Start Game!',
-      () => this.handleStart(),
-      'btn btn-success'
-    );
-
-    const backButton = this.createButton(
-      'Back',
-      () => getScreenManager().navigate('word-input'),
-      'btn btn-secondary'
-    );
-
-    const buttonGroup = this.createButtonGroup([backButton, startButton]);
-
     this.container.appendChild(header);
     this.container.appendChild(summary);
-    this.container.appendChild(toggleButton);
+    this.container.appendChild(startButton);
+    this.container.appendChild(secondaryButtonsRow);
     this.container.appendChild(wordListWrapper);
-    this.container.appendChild(buttonGroup);
 
     return this.container;
   }
@@ -99,10 +111,10 @@ export class ReviewScreen extends BaseScreen {
 
     if (wrapper.style.display === 'none') {
       wrapper.style.display = 'block';
-      button.textContent = 'Hide List';
+      button.textContent = 'Hide word list';
     } else {
       wrapper.style.display = 'none';
-      button.textContent = 'Review/Edit List';
+      button.textContent = 'Review word list';
     }
   }
 

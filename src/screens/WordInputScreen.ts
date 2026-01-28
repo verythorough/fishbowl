@@ -23,13 +23,6 @@ export class WordInputScreen extends BaseScreen {
     contentContainer.className = 'tab-content mb-lg';
     contentContainer.style.minHeight = '300px';
 
-    // Word count
-    const wordCount = document.createElement('div');
-    wordCount.className = 'word-count text-center mb-md';
-    wordCount.style.fontSize = 'var(--font-size-lg)';
-    wordCount.style.fontWeight = '600';
-    wordCount.style.color = 'var(--color-primary)';
-
     // Buttons
     const continueButton = this.createButton(
       'Continue',
@@ -48,11 +41,10 @@ export class WordInputScreen extends BaseScreen {
     this.container.appendChild(header);
     this.container.appendChild(tabs);
     this.container.appendChild(contentContainer);
-    this.container.appendChild(wordCount);
     this.container.appendChild(buttonGroup);
 
     // Render initial tab content
-    await this.renderTabContent(contentContainer, wordCount);
+    await this.renderTabContent(contentContainer);
 
     return this.container;
   }
@@ -98,8 +90,7 @@ export class WordInputScreen extends BaseScreen {
 
         // Re-render content
         const contentContainer = this.container.querySelector('.tab-content') as HTMLElement;
-        const wordCount = this.container.querySelector('.word-count') as HTMLElement;
-        await this.renderTabContent(contentContainer, wordCount);
+        await this.renderTabContent(contentContainer);
       });
 
       tabsContainer.appendChild(button);
@@ -108,7 +99,7 @@ export class WordInputScreen extends BaseScreen {
     return tabsContainer;
   }
 
-  private async renderTabContent(contentContainer: HTMLElement, wordCount: HTMLElement): Promise<void> {
+  private async renderTabContent(contentContainer: HTMLElement): Promise<void> {
     contentContainer.innerHTML = '';
 
     switch (this.currentTab) {
@@ -122,8 +113,6 @@ export class WordInputScreen extends BaseScreen {
         this.renderUploadTab(contentContainer);
         break;
     }
-
-    this.updateWordCount(wordCount);
   }
 
   private async renderBuiltInTab(container: HTMLElement): Promise<void> {
@@ -133,10 +122,10 @@ export class WordInputScreen extends BaseScreen {
     container.appendChild(description);
 
     const lists = [
+      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 90 },
       { filename: 'classic.txt', name: 'Classic', description: 'Well-known people, places & things', count: 150 },
       { filename: 'pop-culture.txt', name: 'Pop Culture', description: 'Modern references', count: 150 },
       { filename: 'mixed.txt', name: 'Mixed', description: 'Varied difficulty words', count: 150 },
-      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 90 },
     ];
 
     for (const list of lists) {
@@ -172,15 +161,13 @@ export class WordInputScreen extends BaseScreen {
         this.selectedLists.delete(list.filename);
       }
       await this.loadSelectedLists();
-      const wordCount = this.container.querySelector('.word-count') as HTMLElement;
-      this.updateWordCount(wordCount);
     });
 
     const textContainer = document.createElement('div');
     textContainer.style.flex = '1';
 
     const name = document.createElement('div');
-    name.textContent = `${list.name} (${list.count} words)`;
+    name.textContent = list.name;
     name.style.fontWeight = '600';
 
     const description = document.createElement('div');
@@ -222,8 +209,6 @@ export class WordInputScreen extends BaseScreen {
     textarea.addEventListener('input', () => {
       const text = textarea.value.trim();
       this.selectedWords = text ? parseTextInput(text) : [];
-      const wordCount = this.container.querySelector('.word-count') as HTMLElement;
-      this.updateWordCount(wordCount);
     });
 
     container.appendChild(textarea);
@@ -250,8 +235,6 @@ export class WordInputScreen extends BaseScreen {
         fileLabel.textContent = `Selected: ${file.name}`;
         try {
           this.selectedWords = await parseTextFile(file);
-          const wordCount = this.container.querySelector('.word-count') as HTMLElement;
-          this.updateWordCount(wordCount);
         } catch (error) {
           fileLabel.textContent = 'Error reading file';
           fileLabel.style.color = 'var(--color-error)';
@@ -261,18 +244,6 @@ export class WordInputScreen extends BaseScreen {
 
     container.appendChild(fileInput);
     container.appendChild(fileLabel);
-  }
-
-  private updateWordCount(element: HTMLElement): void {
-    const count = this.selectedWords.length;
-
-    if (this.currentTab === 'builtin') {
-      element.textContent = `${count} words selected (target: 50)`;
-    } else {
-      element.textContent = count === 1
-        ? '1 word selected'
-        : `${count} words selected`;
-    }
   }
 
   private handleContinue(): void {

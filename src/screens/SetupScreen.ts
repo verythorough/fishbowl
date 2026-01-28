@@ -71,7 +71,7 @@ export class SetupScreen extends BaseScreen {
     const durationDisplay = document.createElement('div');
     durationDisplay.className = 'duration-display';
     durationDisplay.textContent = `${this.selectedDuration}s`;
-    durationDisplay.style.fontSize = 'var(--font-size-2xl)';
+    durationDisplay.style.fontSize = 'var(--font-size-lg)';
     durationDisplay.style.fontWeight = '600';
     durationDisplay.style.minWidth = '100px';
     durationDisplay.style.textAlign = 'center';

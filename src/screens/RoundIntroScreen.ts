@@ -37,6 +37,10 @@ export class RoundIntroScreen extends BaseScreen {
       () => getScreenManager().navigate('turn-intro'),
       'btn btn-success'
     );
+    startButton.style.width = '100%';
+    startButton.style.maxWidth = '400px';
+    startButton.style.margin = '0 auto';
+    startButton.style.display = 'block';
 
     this.container.appendChild(header);
     this.container.appendChild(emoji);
