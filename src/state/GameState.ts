@@ -118,6 +118,7 @@ export class GameStateManager {
   startTurn(): void {
     this.setState(state => ({
       ...state,
+      remainingWords: shuffle(state.remainingWords), // Shuffle words between turns to prevent pattern recognition
       turn: {
         wordsGuessedThisTurn: 0,
         wordsSkippedThisTurn: 0,

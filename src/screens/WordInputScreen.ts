@@ -8,7 +8,7 @@ type Tab = 'builtin' | 'paste' | 'upload';
 export class WordInputScreen extends BaseScreen {
   private currentTab: Tab = 'builtin';
   private selectedWords: Word[] = [];
-  private selectedLists: Set<string> = new Set(['classic.txt']);
+  private selectedLists: Set<string> = new Set(['honeycomb.txt']);
   private readonly targetWordCount: number = 50; // Target 40-50 cards per Monikers guidelines
   private readonly poolSize: number = 60; // 20% extra for swapping
 

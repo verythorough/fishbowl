@@ -130,8 +130,6 @@ export class ReviewScreen extends BaseScreen {
   private createWordList(): HTMLElement {
     const container = document.createElement('div');
     container.className = 'word-list mb-lg';
-    container.style.maxHeight = '400px';
-    container.style.overflowY = 'auto';
     container.style.border = '2px solid var(--color-border)';
     container.style.borderRadius = 'var(--border-radius)';
     container.style.padding = 'var(--spacing-sm)';
@@ -239,8 +237,6 @@ export class ReviewScreen extends BaseScreen {
 
     const wordList = document.createElement('div');
     wordList.className = 'word-list';
-    wordList.style.maxHeight = '400px';
-    wordList.style.overflowY = 'auto';
     wordList.style.border = '2px solid var(--color-border)';
     wordList.style.borderRadius = 'var(--border-radius)';
     wordList.style.padding = 'var(--spacing-sm)';
