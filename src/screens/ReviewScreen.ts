@@ -46,10 +46,6 @@ export class ReviewScreen extends BaseScreen {
 
     const header = this.createHeader('Ready to play?');
 
-    const summary = document.createElement('div');
-    summary.className = 'summary mb-md';
-    this.updateSummary(summary);
-
     // Primary Start Game button (large, centered)
     const startButton = this.createButton(
       'Start Game!',
@@ -97,7 +93,6 @@ export class ReviewScreen extends BaseScreen {
     wordListWrapper.appendChild(wordList);
 
     this.container.appendChild(header);
-    this.container.appendChild(summary);
     this.container.appendChild(startButton);
     this.container.appendChild(secondaryButtonsRow);
     this.container.appendChild(wordListWrapper);
@@ -118,21 +113,28 @@ export class ReviewScreen extends BaseScreen {
     }
   }
 
-  private updateSummary(element: HTMLElement): void {
-    const selectedCount = this.selectedWordIds.size;
-    if (this.isPoolMode) {
-      element.textContent = `${selectedCount} of ${this.wordPool.length} words selected (target: ${this.targetCount}). Tap to add/remove words.`;
-    } else {
-      element.textContent = `You have ${selectedCount} words. Review them below and remove any you don't want.`;
-    }
-  }
-
   private createWordList(): HTMLElement {
     const container = document.createElement('div');
     container.className = 'word-list mb-lg';
     container.style.border = '2px solid var(--color-border)';
     container.style.borderRadius = 'var(--border-radius)';
     container.style.padding = 'var(--spacing-sm)';
+
+    // Add description at the top
+    const description = document.createElement('div');
+    description.className = 'summary mb-md';
+    const selectedCount = this.selectedWordIds.size;
+    if (this.isPoolMode) {
+      description.textContent = `${selectedCount} of ${this.wordPool.length} words selected (target: ${this.targetCount}). Tap to add/remove words.`;
+    } else {
+      description.textContent = `You have ${selectedCount} words. Review them below and remove any you don't want.`;
+    }
+    description.style.fontSize = 'var(--font-size-sm)';
+    description.style.color = 'var(--color-text-secondary)';
+    description.style.paddingBottom = 'var(--spacing-sm)';
+    description.style.borderBottom = '2px solid var(--color-border)';
+    description.style.marginBottom = 'var(--spacing-sm)';
+    container.appendChild(description);
 
     if (this.isPoolMode) {
       // Show selected words first, then available words
@@ -231,7 +233,6 @@ export class ReviewScreen extends BaseScreen {
 
   private refreshWordList(): void {
     const wrapper = this.container.querySelector('#word-list-wrapper') as HTMLElement;
-    const summary = this.container.querySelector('.summary') as HTMLElement;
 
     wrapper.innerHTML = '';
 
@@ -240,6 +241,22 @@ export class ReviewScreen extends BaseScreen {
     wordList.style.border = '2px solid var(--color-border)';
     wordList.style.borderRadius = 'var(--border-radius)';
     wordList.style.padding = 'var(--spacing-sm)';
+
+    // Add description at the top
+    const description = document.createElement('div');
+    description.className = 'summary mb-md';
+    const selectedCount = this.selectedWordIds.size;
+    if (this.isPoolMode) {
+      description.textContent = `${selectedCount} of ${this.wordPool.length} words selected (target: ${this.targetCount}). Tap to add/remove words.`;
+    } else {
+      description.textContent = `You have ${selectedCount} words. Review them below and remove any you don't want.`;
+    }
+    description.style.fontSize = 'var(--font-size-sm)';
+    description.style.color = 'var(--color-text-secondary)';
+    description.style.paddingBottom = 'var(--spacing-sm)';
+    description.style.borderBottom = '2px solid var(--color-border)';
+    description.style.marginBottom = 'var(--spacing-sm)';
+    wordList.appendChild(description);
 
     if (this.isPoolMode) {
       // Show selected words first, then available words
@@ -280,8 +297,6 @@ export class ReviewScreen extends BaseScreen {
     }
 
     wrapper.appendChild(wordList);
-
-    this.updateSummary(summary);
 
     // Disable start button if no words selected
     if (this.selectedWordIds.size === 0) {
