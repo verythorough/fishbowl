@@ -57,6 +57,16 @@ export class ReviewScreen extends BaseScreen {
     startButton.style.fontSize = 'var(--font-size-xl)';
     startButton.style.padding = 'var(--spacing-md)';
 
+    // Player word selection button
+    const playerSelectionButton = this.createButton(
+      '👥 Pass to Players →',
+      () => getScreenManager().navigate('player-word-selection'),
+      'btn btn-primary'
+    );
+    playerSelectionButton.style.width = '100%';
+    playerSelectionButton.style.marginBottom = 'var(--spacing-sm)';
+    playerSelectionButton.style.fontSize = 'var(--font-size-base)';
+
     // Secondary buttons row
     const secondaryButtonsRow = document.createElement('div');
     secondaryButtonsRow.style.display = 'flex';
@@ -94,6 +104,7 @@ export class ReviewScreen extends BaseScreen {
 
     this.container.appendChild(header);
     this.container.appendChild(startButton);
+    this.container.appendChild(playerSelectionButton);
     this.container.appendChild(secondaryButtonsRow);
     this.container.appendChild(wordListWrapper);
 

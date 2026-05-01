@@ -65,6 +65,7 @@ export type Screen =
   | 'setup'
   | 'word-input'
   | 'review'
+  | 'player-word-selection'
   | 'round-intro'
   | 'turn-intro'
   | 'play'
