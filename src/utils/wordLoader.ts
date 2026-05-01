@@ -61,6 +61,32 @@ export function parseTextInput(text: string): Word[] {
 }
 
 /**
+ * Strip explanatory text an LLM may add before/after the word list.
+ * Trims lines from the start and end that look like sentences (more than 5 words).
+ */
+export function cleanAIResponse(text: string): string {
+  const lines = text.split('\n');
+
+  const looksLikeWordEntry = (line: string): boolean => {
+    const trimmed = line.trim();
+    if (trimmed.length === 0) return false;
+    return trimmed.split(/\s+/).length <= 5;
+  };
+
+  const firstIndex = lines.findIndex(looksLikeWordEntry);
+  let lastIndex = -1;
+  for (let i = lines.length - 1; i >= 0; i--) {
+    if (looksLikeWordEntry(lines[i]!)) {
+      lastIndex = i;
+      break;
+    }
+  }
+
+  if (firstIndex === -1 || lastIndex === -1) return text;
+  return lines.slice(firstIndex, lastIndex + 1).join('\n');
+}
+
+/**
  * Randomly select a subset of words from a larger list
  */
 export function selectRandomSubset(words: Word[], count: number): Word[] {

@@ -1,9 +1,10 @@
 import { BaseScreen } from './BaseScreen';
 import { getScreenManager } from './ScreenManager';
-import { loadBuiltInList, parseTextInput, parseTextFile, selectRandomSubset } from '../utils/wordLoader';
+import { loadBuiltInList, parseTextInput, parseTextFile, selectRandomSubset, cleanAIResponse } from '../utils/wordLoader';
+import { AI_WORD_LIST_PROMPT } from '../constants';
 import type { Word } from '../types';
 
-type Tab = 'builtin' | 'paste' | 'upload';
+type Tab = 'builtin' | 'paste' | 'upload' | 'ai';
 
 export class WordInputScreen extends BaseScreen {
   private currentTab: Tab = 'builtin';
@@ -58,6 +59,7 @@ export class WordInputScreen extends BaseScreen {
 
     const tabs: Array<{ id: Tab; label: string }> = [
       { id: 'builtin', label: 'Built-in Lists' },
+      { id: 'ai', label: 'AI Generate' },
       { id: 'paste', label: 'Paste Text' },
       { id: 'upload', label: 'Upload File' },
     ];
@@ -105,6 +107,9 @@ export class WordInputScreen extends BaseScreen {
     switch (this.currentTab) {
       case 'builtin':
         await this.renderBuiltInTab(contentContainer);
+        break;
+      case 'ai':
+        this.renderAITab(contentContainer);
         break;
       case 'paste':
         this.renderPasteTab(contentContainer);
@@ -194,6 +199,72 @@ export class WordInputScreen extends BaseScreen {
 
     // Select 60 words (target 50 + 10 extras for swapping)
     this.selectedWords = selectRandomSubset(allWords, this.poolSize);
+  }
+
+  private renderAITab(container: HTMLElement): void {
+    const description = this.createParagraph(
+      'Use an AI chatbot to generate a custom word list tailored to your group.'
+    );
+    container.appendChild(description);
+
+    // Step 1: Get the prompt
+    const step1 = document.createElement('div');
+    step1.style.marginBottom = 'var(--spacing-md)';
+
+    const step1Label = document.createElement('div');
+    step1Label.textContent = 'Step 1: Send this prompt to an AI chatbot';
+    step1Label.style.fontWeight = '600';
+    step1Label.style.marginBottom = 'var(--spacing-sm)';
+    step1.appendChild(step1Label);
+
+    const buttonRow = document.createElement('div');
+    buttonRow.style.display = 'flex';
+    buttonRow.style.gap = 'var(--spacing-sm)';
+    buttonRow.style.flexWrap = 'wrap';
+
+    const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(AI_WORD_LIST_PROMPT)}`;
+    const openClaudeButton = this.createButton(
+      'Open in Claude',
+      () => window.open(claudeUrl, '_blank'),
+      'btn btn-primary'
+    );
+
+    const copyButton = this.createButton(
+      'Copy Prompt',
+      async () => {
+        await navigator.clipboard.writeText(AI_WORD_LIST_PROMPT);
+        copyButton.textContent = 'Copied!';
+        setTimeout(() => { copyButton.textContent = 'Copy Prompt'; }, 2000);
+      },
+      'btn btn-secondary'
+    );
+
+    buttonRow.appendChild(openClaudeButton);
+    buttonRow.appendChild(copyButton);
+    step1.appendChild(buttonRow);
+    container.appendChild(step1);
+
+    // Step 2: Paste the result
+    const step2 = document.createElement('div');
+
+    const step2Label = document.createElement('div');
+    step2Label.textContent = 'Step 2: Paste the generated word list here';
+    step2Label.style.fontWeight = '600';
+    step2Label.style.marginBottom = 'var(--spacing-sm)';
+    step2.appendChild(step2Label);
+
+    const textarea = document.createElement('textarea');
+    textarea.placeholder = 'Paste the AI-generated word list here, one word per line...';
+    textarea.rows = 10;
+    textarea.style.width = '100%';
+
+    textarea.addEventListener('input', () => {
+      const text = textarea.value.trim();
+      this.selectedWords = text ? parseTextInput(cleanAIResponse(text)) : [];
+    });
+
+    step2.appendChild(textarea);
+    container.appendChild(step2);
   }
 
   private renderPasteTab(container: HTMLElement): void {
