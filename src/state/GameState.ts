@@ -1,4 +1,4 @@
-import type { GameState, GameConfig, Word, Round, TurnState, TurnStats, RoundStats } from '../types';
+import type { GameState, GameConfig, Word, Round, TurnState, TurnStats, RoundStats, Screen } from '../types';
 import { ROUND_DEFINITIONS, DEFAULT_CONFIG } from '../constants';
 import { shuffle } from '../utils/shuffle';
 import { saveGameState, loadGameState, clearGameState } from './storage';
@@ -17,6 +17,14 @@ export class GameStateManager {
     if (savedState) {
       this.state = savedState;
     }
+
+    // Flush any pending save before the page unloads so we never lose
+    // ticks/word-marks that were waiting in the throttle window.
+    if (typeof window !== 'undefined') {
+      const flush = () => this.flushPendingSave();
+      window.addEventListener('pagehide', flush);
+      window.addEventListener('beforeunload', flush);
+    }
   }
 
   private getInitialState(): GameState {
@@ -32,6 +40,7 @@ export class GameStateManager {
       gameStarted: false,
       gameCompleted: false,
       lastSaved: 0,
+      currentScreen: 'welcome',
     };
   }
 
@@ -62,23 +71,30 @@ export class GameStateManager {
   private setState(updater: (state: GameState) => GameState): void {
     this.state = updater(this.state);
     this.notifyListeners();
-    this.debouncedSave();
+    this.throttledSave();
   }
 
   private notifyListeners(): void {
     this.listeners.forEach(listener => listener(this.state));
   }
 
-  // Debounced save to localStorage (max once per second)
-  private debouncedSave(): void {
-    if (this.saveTimeout !== null) {
-      clearTimeout(this.saveTimeout);
-    }
+  // Throttled save to localStorage: guarantees a save within 1s of any change.
+  // (A debounce would be reset by every timer tick and never actually fire.)
+  private throttledSave(): void {
+    if (this.saveTimeout !== null) return;
 
     this.saveTimeout = window.setTimeout(() => {
-      this.saveToStorage();
       this.saveTimeout = null;
+      this.saveToStorage();
     }, 1000);
+  }
+
+  private flushPendingSave(): void {
+    if (this.saveTimeout !== null) {
+      clearTimeout(this.saveTimeout);
+      this.saveTimeout = null;
+    }
+    this.saveToStorage();
   }
 
   // Public API methods
@@ -109,6 +125,7 @@ export class GameStateManager {
       gameStarted: true,
       gameCompleted: false,
       lastSaved: Date.now(),
+      currentScreen: 'round-intro',
     }));
   }
 
@@ -332,6 +349,18 @@ export class GameStateManager {
   resetGame(): void {
     clearGameState();
     this.setState(() => this.getInitialState());
+  }
+
+  /**
+   * Update the current screen and persist immediately so refreshes restore correctly.
+   */
+  setCurrentScreen(screen: Screen): void {
+    if (this.state.currentScreen === screen) return;
+    this.state = { ...this.state, currentScreen: screen };
+    this.notifyListeners();
+    if (this.state.gameStarted) {
+      this.flushPendingSave();
+    }
   }
 
   // Storage methods
