@@ -85,6 +85,7 @@ export class RoundEndScreen extends BaseScreen {
     this.container.appendChild(statsSection);
     this.container.appendChild(message);
     this.container.appendChild(nextButton);
+    this.container.appendChild(this.createQuitButton());
 
     return this.container;
   }

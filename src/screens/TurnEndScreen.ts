@@ -89,6 +89,7 @@ export class TurnEndScreen extends BaseScreen {
     this.container.appendChild(statsSection);
     this.container.appendChild(progress);
     this.container.appendChild(nextButton);
+    this.container.appendChild(this.createQuitButton());
 
     return this.container;
   }

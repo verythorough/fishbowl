@@ -52,6 +52,7 @@ export class RoundIntroScreen extends BaseScreen {
 
     this.container.appendChild(howToPlay);
     this.container.appendChild(startButton);
+    this.container.appendChild(this.createQuitButton());
 
     return this.container;
   }
