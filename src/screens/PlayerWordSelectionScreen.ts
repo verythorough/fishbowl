@@ -120,6 +120,12 @@ export class PlayerWordSelectionScreen extends BaseScreen {
     }, 'btn btn-secondary');
     decrementBtn.style.width = '52px';
     decrementBtn.style.minWidth = '52px';
+    decrementBtn.style.height = '52px';
+    decrementBtn.style.padding = '0';
+    decrementBtn.style.display = 'inline-flex';
+    decrementBtn.style.alignItems = 'center';
+    decrementBtn.style.justifyContent = 'center';
+    decrementBtn.style.lineHeight = '1';
     decrementBtn.style.fontSize = 'var(--font-size-xl)';
 
     const countDisplay = document.createElement('span');
@@ -137,6 +143,12 @@ export class PlayerWordSelectionScreen extends BaseScreen {
     }, 'btn btn-secondary');
     incrementBtn.style.width = '52px';
     incrementBtn.style.minWidth = '52px';
+    incrementBtn.style.height = '52px';
+    incrementBtn.style.padding = '0';
+    incrementBtn.style.display = 'inline-flex';
+    incrementBtn.style.alignItems = 'center';
+    incrementBtn.style.justifyContent = 'center';
+    incrementBtn.style.lineHeight = '1';
     incrementBtn.style.fontSize = 'var(--font-size-xl)';
 
     countControls.appendChild(decrementBtn);
@@ -175,8 +187,8 @@ export class PlayerWordSelectionScreen extends BaseScreen {
     beginBtn.style.fontSize = 'var(--font-size-lg)';
     beginBtn.style.marginBottom = 'var(--spacing-sm)';
 
-    const backBtn = this.createButton('← Back to review', () => {
-      getScreenManager().navigate('review');
+    const backBtn = this.createButton('← Back', () => {
+      getScreenManager().navigate('refine');
     }, 'btn btn-secondary');
     backBtn.style.width = '100%';
 

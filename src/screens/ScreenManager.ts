@@ -5,6 +5,7 @@ import { WelcomeScreen } from './WelcomeScreen';
 import { SetupScreen } from './SetupScreen';
 import { WordInputScreen } from './WordInputScreen';
 import { ReviewScreen } from './ReviewScreen';
+import { RefineScreen } from './RefineScreen';
 import { PlayerWordSelectionScreen } from './PlayerWordSelectionScreen';
 import { RoundIntroScreen } from './RoundIntroScreen';
 import { TurnIntroScreen } from './TurnIntroScreen';
@@ -51,6 +52,7 @@ export class ScreenManager {
     this.screens.set('setup', () => new SetupScreen());
     this.screens.set('word-input', () => new WordInputScreen());
     this.screens.set('review', () => new ReviewScreen());
+    this.screens.set('refine', () => new RefineScreen());
     this.screens.set('player-word-selection', () => new PlayerWordSelectionScreen());
     this.screens.set('round-intro', () => new RoundIntroScreen());
     this.screens.set('turn-intro', () => new TurnIntroScreen());
