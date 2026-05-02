@@ -9,7 +9,7 @@ type Tab = 'builtin' | 'paste' | 'upload' | 'ai';
 export class WordInputScreen extends BaseScreen {
   private currentTab: Tab = 'builtin';
   private selectedWords: Word[] = [];
-  private selectedLists: Set<string> = new Set(['honeycomb.txt']);
+  private selectedLists: Set<string> = new Set(['classic.txt']);
   private readonly targetWordCount: number = 50; // Target 40-50 cards per Monikers guidelines
   private readonly poolSize: number = 60; // 20% extra for swapping
 
@@ -127,10 +127,10 @@ export class WordInputScreen extends BaseScreen {
     container.appendChild(description);
 
     const lists = [
-      { filename: 'honeycomb.txt', name: 'Honeycomb', description: 'Inside jokes and company culture', count: 90 },
       { filename: 'classic.txt', name: 'Classic', description: 'Well-known people, places & things', count: 150 },
       { filename: 'pop-culture.txt', name: 'Pop Culture', description: 'Modern references', count: 150 },
       { filename: 'mixed.txt', name: 'Mixed', description: 'Varied difficulty words', count: 150 },
+      { filename: 'cali-multigenerational.txt', name: 'California Multi-Generational', description: 'People, places & culture for mixed ages', count: 60 },
     ];
 
     for (const list of lists) {
