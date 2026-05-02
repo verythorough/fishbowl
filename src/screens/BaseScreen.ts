@@ -8,6 +8,12 @@ export abstract class BaseScreen {
 
   abstract render(): HTMLElement | Promise<HTMLElement>;
 
+  /**
+   * Optional hook called by the ScreenManager before navigating away from this screen.
+   * Override to stop timers, remove global listeners, etc.
+   */
+  cleanup(): void {}
+
   protected createButton(
     text: string,
     onClick: () => void,

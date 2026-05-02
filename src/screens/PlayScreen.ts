@@ -212,7 +212,7 @@ export class PlayScreen extends BaseScreen {
     getScreenManager().navigate('turn-end');
   }
 
-  private cleanup(): void {
+  cleanup(): void {
     this.timer?.stop();
     this.timer = null;
     if (this.unsubscribe) {
