@@ -58,6 +58,7 @@ export interface GameState {
   gameStarted: boolean;
   gameCompleted: boolean;
   lastSaved: number;
+  currentScreen: Screen;
 }
 
 export type Screen =

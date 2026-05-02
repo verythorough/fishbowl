@@ -38,6 +38,11 @@ export function loadGameState(): GameState | null {
       return null;
     }
 
+    // Backwards compatibility: older saved states may not have currentScreen.
+    if (!data.state.currentScreen) {
+      data.state = { ...data.state, currentScreen: 'welcome' };
+    }
+
     return data.state;
   } catch (error) {
     console.error('Failed to load game state:', error);
