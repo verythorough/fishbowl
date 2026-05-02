@@ -256,6 +256,50 @@ label {
   color: var(--color-text);
 }
 
+/* Quit button */
+.quit-btn {
+  display: block;
+  margin: var(--spacing-lg) auto 0;
+  font-size: var(--font-size-sm);
+  padding: var(--spacing-xs) var(--spacing-md);
+  min-height: auto;
+  opacity: 0.75;
+}
+
+.quit-btn:hover {
+  opacity: 1;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  z-index: 1100;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal .button-group {
+  margin-top: 0;
+}
+
+.modal .btn {
+  flex: 1;
+}
+
 /* Utility classes */
 .text-center {
   text-align: center;

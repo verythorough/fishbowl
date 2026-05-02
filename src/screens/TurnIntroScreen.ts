@@ -74,6 +74,7 @@ export class TurnIntroScreen extends BaseScreen {
     this.container.appendChild(roundReminder);
     this.container.appendChild(progress);
     this.container.appendChild(startButton);
+    this.container.appendChild(this.createQuitButton());
 
     return this.container;
   }

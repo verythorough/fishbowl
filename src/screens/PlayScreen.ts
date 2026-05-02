@@ -79,6 +79,7 @@ export class PlayScreen extends BaseScreen {
     this.container.appendChild(wordCard);
     this.container.appendChild(gotItButton);
     this.container.appendChild(skipButton);
+    this.container.appendChild(this.createQuitButton());
 
     // Start the timer
     this.startTimer();
@@ -165,6 +166,21 @@ export class PlayScreen extends BaseScreen {
 
     // Show pause overlay
     this.showPauseOverlay();
+  }
+
+  protected handleQuitClick(): void {
+    const wasActive = !!this.timer && getGameState().getState().turn.isActive;
+    if (wasActive) {
+      this.timer?.pause();
+      getGameState().pauseTurn();
+    }
+    this.showQuitConfirmation(() => {
+      if (wasActive) {
+        const state = getGameState().getState();
+        this.timer?.resume(state.turn.timeRemaining);
+        getGameState().resumeTurn();
+      }
+    });
   }
 
   private showPauseOverlay(): void {
